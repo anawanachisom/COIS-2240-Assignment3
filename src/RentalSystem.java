@@ -3,6 +3,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RentalSystem {
+	// MY PRIVATE STATIC INSTANCE!!
+	private static RentalSystem instance;
+    
+    // MY PRIVATE CONSTRUCTOR
+    private RentalSystem() {
+        vehicles = new ArrayList<>();
+        rentalHistory = new RentalHistory();
+    }
+    
+ // PUBLIC STATIC METHOD FOR ME TO GET INSTANCE
+    public static RentalSystem getInstance() {
+        if (instance == null) {
+            instance = new RentalSystem();
+        }
+        return instance;
+    }
+	
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();

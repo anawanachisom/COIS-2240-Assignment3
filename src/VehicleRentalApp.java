@@ -4,7 +4,15 @@ import java.time.LocalDate;
 public class VehicleRentalApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        RentalSystem rentalSystem = new RentalSystem();
+        RentalSystem rentalSystem = RentalSystem.getInstance();  // THIS IS MY NEW SINGLETON WAY
+        
+        // To Test our Singleton
+        RentalSystem system1 = RentalSystem.getInstance();
+        RentalSystem system2 = RentalSystem.getInstance();
+        System.out.println("Same instance? " + (system1 == system2)); // This should give me "true"
+        
+
+    
 
         while (true) {
         	System.out.println("\n1: Add Vehicle\n" + 
