@@ -1,6 +1,4 @@
-
 public interface Rentable {
-
-	 void rentVehicle();
-	 void returnVehicle();
+    void rentVehicle();
+    void returnVehicle();
 }

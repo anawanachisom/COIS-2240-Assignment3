@@ -1,96 +1,124 @@
+import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RentalSystem {
-	
-	private static RentalSystem instance;
-	
-	 private RentalSystem() {
-	        vehicles = new ArrayList<>();
-	        rentalHistory = new RentalHistory();
-	    }
-	    
-	    public static RentalSystem getInstance() {
-	        if (instance == null) {
-	            instance = new RentalSystem();
-	        }
-	        return instance;
-	    }
-	
-    private ArrayList<Vehicle> vehicles;
-    private RentalHistory rentalHistory = new RentalHistory(); // new attribute for Assignment #2
-    
-    // Original Assignment #1 methods (PLEASE PLEASEEE DON'T FORGET TO COPY CODE FROM FIRST ASSIGNMENT)
-    
-    // Original addVehicle method
-    public boolean addVehicle(Vehicle vehicle) {
-        if (vehicle == null || vehicle.getLicensePlate() == null || vehicle.getLicensePlate().isEmpty()) {
-            return false;
-        }
-        for (Vehicle v : vehicles) {
-            if (vehicle.getLicensePlate().equalsIgnoreCase(v.getLicensePlate())) {
-                return false;
-            }
-        }
-        vehicle.setStatus(Vehicle.Status.Available);
+    private List<Vehicle> vehicles = new ArrayList<>();
+    private List<Customer> customers = new ArrayList<>();
+    private RentalHistory rentalHistory = new RentalHistory();
+
+    public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
-        return true;
     }
-    
-    // Original rentVehicle method
-    public boolean rentVehicle(String licensePlate, String customerName) {
-        for (Vehicle v : vehicles) {
-            if (licensePlate.equalsIgnoreCase(v.getLicensePlate())) {
-                if (v.getStatus() == Vehicle.Status.Available) {
-                    String capsName = customerName.substring(0, 1).toUpperCase() +
-                            customerName.substring(1).toLowerCase();
-                    v.setStatus(Vehicle.Status.Rented);
-                    return true;
+
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
+    public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
+        if (vehicle.getStatus() == Vehicle.VehicleStatus.Available) {
+            vehicle.setStatus(Vehicle.VehicleStatus.Rented);
+            rentalHistory.addRecord(new RentalRecord(vehicle, customer, date, amount, "RENT"));
+            System.out.println("Vehicle rented to " + customer.getCustomerName());
+        }
+        else {
+            System.out.println("Vehicle is not available for renting.");
+        }
+    }
+
+    public void returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
+        if (vehicle.getStatus() == Vehicle.VehicleStatus.Rented) {
+            vehicle.setStatus(Vehicle.VehicleStatus.Available);
+            rentalHistory.addRecord(new RentalRecord(vehicle, customer, date, extraFees, "RETURN"));
+            System.out.println("Vehicle returned by " + customer.getCustomerName());
+        }
+        else {
+            System.out.println("Vehicle is not rented.");
+        }
+    }    
+
+    public void displayVehicles(Vehicle.VehicleStatus status) {
+        // Display appropriate title based on status
+        if (status == null) {
+            System.out.println("\n=== All Vehicles ===");
+        } else {
+            System.out.println("\n=== " + status + " Vehicles ===");
+        }
+        
+        // Header with proper column widths
+        System.out.printf("|%-16s | %-12s | %-12s | %-12s | %-6s | %-18s |%n", 
+            " Type", "Plate", "Make", "Model", "Year", "Status");
+        System.out.println("|--------------------------------------------------------------------------------------------|");
+    	  
+        boolean found = false;
+        for (Vehicle vehicle : vehicles) {
+            if (status == null || vehicle.getStatus() == status) {
+                found = true;
+                String vehicleType;
+                if (vehicle instanceof Car) {
+                    vehicleType = "Car";
+                } else if (vehicle instanceof Minibus) {
+                    vehicleType = "Minibus";
+                } else if (vehicle instanceof PickupTruck) {
+                    vehicleType = "Pickup Truck";
+                } else {
+                    vehicleType = "Unknown";
                 }
+                System.out.printf("| %-15s | %-12s | %-12s | %-12s | %-6d | %-18s |%n", 
+                    vehicleType, vehicle.getLicensePlate(), vehicle.getMake(), vehicle.getModel(), vehicle.getYear(), vehicle.getStatus().toString());
             }
         }
-        return false;
-    }
-    
-    // Original returnVehicle method
-    public boolean returnVehicle(String licensePlate) {
-        if (licensePlate == null) return false;
-        for (Vehicle v : vehicles) {
-            if (licensePlate.equalsIgnoreCase(v.getLicensePlate())) {
-                if (v.getStatus() == Vehicle.Status.Rented) {
-                    v.setStatus(Vehicle.Status.Available);
-                    return true;
-                }
-                return false;
+        if (!found) {
+            if (status == null) {
+                System.out.println("  No Vehicles found.");
+            } else {
+                System.out.println("  No vehicles with Status: " + status);
             }
         }
-        return false;
+        System.out.println();
+    }
+
+    public void displayAllCustomers() {
+        for (Customer c : customers) {
+            System.out.println("  " + c.toString());
+        }
     }
     
-    // Original display method
-    public void displayAvailableVehicles() {
-        System.out.println(" | Type | Plate | Make | Model | Year |");
-        System.out.println("----------------------------------------------------------------------");
-        for (Vehicle v : vehicles) {
-            if (v.getStatus() == Vehicle.Status.Available) {
-                String type = (v instanceof Car) ? "CAR" : "MINIBUS";
-                System.out.println(
-                    " | " + type + " | " + v.getLicensePlate() + " | " +
-                    v.getMake() + " | " + v.getModel() + " | " + v.getYear() + " |"
+    public void displayRentalHistory() {
+        if (rentalHistory.getRentalHistory().isEmpty()) {
+            System.out.println("  No rental history found.");
+        } else {
+            // Header with proper column widths
+            System.out.printf("|%-10s | %-12s | %-20s | %-12s | %-12s |%n", 
+                " Type", "Plate", "Customer", "Date", "Amount");
+            System.out.println("|-------------------------------------------------------------------------------|");
+            
+            for (RentalRecord record : rentalHistory.getRentalHistory()) {                
+                System.out.printf("| %-9s | %-12s | %-20s | %-12s | $%-11.2f |%n", 
+                    record.getRecordType(), 
+                    record.getVehicle().getLicensePlate(),
+                    record.getCustomer().getCustomerName(),
+                    record.getRecordDate().toString(),
+                    record.getTotalAmount()
                 );
             }
+            System.out.println();
         }
     }
     
-    // New Assignment #2 methods (empty implementations)
-    public boolean rentVehicle(Vehicle vehicle, Customer customer, LocalDate rentalDate, double rentalAmount) {
-        return false; // Empty implementation
+    public Vehicle findVehicleByPlate(String plate) {
+        for (Vehicle v : vehicles) {
+            if (v.getLicensePlate().equalsIgnoreCase(plate)) {
+                return v;
+            }
+        }
+        return null;
     }
     
-    public boolean returnVehicle(Vehicle vehicle, Customer customer, LocalDate returnDate, double extraFees) {
-        return false; // Empty implementation
+    public Customer findCustomerById(int id) {
+        for (Customer c : customers)
+            if (c.getCustomerId() == id)
+                return c;
+        return null;
     }
 }

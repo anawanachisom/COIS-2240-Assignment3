@@ -6,8 +6,7 @@ public class RentalRecord {
     private LocalDate recordDate;
     private double totalAmount;
     private String recordType; // "RENT" or "RETURN"
-    
-    // Constructor
+
     public RentalRecord(Vehicle vehicle, Customer customer, LocalDate recordDate, double totalAmount, String recordType) {
         this.vehicle = vehicle;
         this.customer = customer;
@@ -15,9 +14,32 @@ public class RentalRecord {
         this.totalAmount = totalAmount;
         this.recordType = recordType;
     }
+
+    public Customer getCustomer(){
+    	return customer;
+    }
     
-    // Empty method for Assignment #2
+    public Vehicle getVehicle(){
+    	return vehicle;
+    }
+    
+    public LocalDate getRecordDate() {
+        return recordDate;
+    }
+    
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+    
+    public String getRecordType() {
+        return recordType;
+    }
+    
+    @Override
     public String toString() {
-        return ""; // Empty implementation
+        return recordType + " | Plate: " + vehicle.getLicensePlate() + 
+               " | Customer: " + customer.getCustomerName() + 
+               " | Date: " + recordDate + 
+               " | Amount: $" + totalAmount;
     }
 }

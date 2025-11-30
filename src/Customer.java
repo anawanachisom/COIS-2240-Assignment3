@@ -1,18 +1,22 @@
-
-public 	class Customer {
-    private String customerId;
+public class Customer {
+    private int customerId;
     private String name;
-    private String phoneNumber;
-    
-    // Constructor
-    public Customer(String customerId, String name, String phoneNumber) {
+
+    public Customer(int customerId, String name) {
         this.customerId = customerId;
         this.name = name;
-        this.phoneNumber = phoneNumber;
     }
-    
-    // Empty method for Assignment #2
+
+    public int getCustomerId() {
+    	return customerId;
+    }
+
+    public String getCustomerName() {
+    	return name;
+    }
+
+    @Override
     public String toString() {
-        return ""; // Empty implementation
+        return "Customer ID: " + customerId + " | Name: " + name;
     }
 }
