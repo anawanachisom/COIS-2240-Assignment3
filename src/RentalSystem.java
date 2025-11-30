@@ -1,6 +1,9 @@
 import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class RentalSystem {
 	// MY PRIVATE STATIC INSTANCE!!
@@ -26,21 +29,26 @@ public class RentalSystem {
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
+        saveVehicle(vehicle);
     }
 
     public void addCustomer(Customer customer) {
         customers.add(customer);
+        saveCustomer(customer); 
     }
 
     public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.Available) {
             vehicle.setStatus(Vehicle.VehicleStatus.Rented);
             rentalHistory.addRecord(new RentalRecord(vehicle, customer, date, amount, "RENT"));
+            saveRecord(new RentalRecord(vehicle, customer, date, amount, "RENT"));
             System.out.println("Vehicle rented to " + customer.getCustomerName());
         }
         else {
             System.out.println("Vehicle is not available for renting.");
         }
+        
+        
     }
 
     public void returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
@@ -52,6 +60,8 @@ public class RentalSystem {
         else {
             System.out.println("Vehicle is not rented.");
         }
+        
+        saveRecord(new RentalRecord(vehicle, customer, date, extraFees, "RETURN"));
     }    
 
     public void displayVehicles(Vehicle.VehicleStatus status) {
@@ -138,4 +148,56 @@ public class RentalSystem {
                 return c;
         return null;
     }
+    
+ // 1. Save vehicle to file (called inside addVehicle())
+    private void saveVehicle(Vehicle vehicle) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("vehicles.txt", true))) {
+            // Format: Type,LicensePlate,Make,Model,Year,Status
+            String vehicleType;
+            if (vehicle instanceof Car) {
+                vehicleType = "CAR";
+            } else if (vehicle instanceof Minibus) {
+                vehicleType = "MINIBUS";
+            } else if (vehicle instanceof PickupTruck) {
+                vehicleType = "PICKUPTRUCK";
+            } else {
+                vehicleType = "UNKNOWN";
+            }
+            
+            writer.println(vehicleType + "," + 
+                          vehicle.getLicensePlate() + "," + 
+                          vehicle.getMake() + "," + 
+                          vehicle.getModel() + "," + 
+                          vehicle.getYear() + "," + 
+                          vehicle.getStatus());
+        } catch (IOException e) {
+            System.out.println("Error saving vehicle: " + e.getMessage());
+        }
+    }
+
+    // 2. Save customer to file (called inside addCustomer())
+    private void saveCustomer(Customer customer) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("customers.txt", true))) {
+            // Format: CustomerID,Name,PhoneNumber
+            writer.println(customer.getCustomerId() + "," + 
+                          customer.getCustomerName() );
+        } catch (IOException e) {
+            System.out.println("Error saving customer: " + e.getMessage());
+        }
+    }
+
+    // 3. Save rental record to file (called in rentVehicle() and returnVehicle())
+    private void saveRecord(RentalRecord record) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("rental_records.txt", true))) {
+            // Format: RecordType,LicensePlate,CustomerID,Date,Amount
+            writer.println(record.getRecordType() + "," + 
+                          record.getVehicle().getLicensePlate() + "," + 
+                          record.getCustomer().getCustomerId() + "," + 
+                          record.getRecordDate() + "," + 
+                          record.getTotalAmount());
+        } catch (IOException e) {
+            System.out.println("Error saving rental record: " + e.getMessage());
+        }
+    }
+    
 }
