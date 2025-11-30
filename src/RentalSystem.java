@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class RentalSystem {
 	// MY PRIVATE STATIC INSTANCE!!
@@ -12,7 +14,9 @@ public class RentalSystem {
     // MY PRIVATE CONSTRUCTOR
     private RentalSystem() {
         vehicles = new ArrayList<>();
+        customers = new ArrayList<>();
         rentalHistory = new RentalHistory();
+        loadData();
     }
     
  // PUBLIC STATIC METHOD FOR ME TO GET INSTANCE
@@ -200,4 +204,101 @@ public class RentalSystem {
         }
     }
     
+ // Load data from files when program starts
+    private void loadData() {
+        loadVehicles();
+        loadCustomers();
+        loadRentalRecords();
+    }
+    
+    
+ // THIS METHOD WILL HELP US TO LOAR THE VEHICLES FROM vehicles.txt
+    private void loadVehicles() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("vehicles.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 6) {
+                    String type = parts[0];
+                    String licensePlate = parts[1];
+                    String make = parts[2];
+                    String model = parts[3];
+                    int year = Integer.parseInt(parts[4]);
+                    Vehicle.VehicleStatus status = Vehicle.VehicleStatus.valueOf(parts[5]);
+                    
+                    Vehicle vehicle = null;
+                    switch (type) {
+                        case "CAR":
+                            vehicle = new Car(make, model, year, 4); // THIS COULD BE OUR DEFAULT NUMBER OF SEATS
+                            break;
+                        case "MINIBUS":
+                            vehicle = new Minibus(make, model, year, false); // THIS COULD BE OUR DEFAULT ACCESSIBILITY
+                            break;
+                        case "PICKUPTRUCK":
+                            vehicle = new PickupTruck(make, model, year, 0.0, false); // Default cargo size and trailer
+                            break;
+                    }
+                    
+                    if (vehicle != null) {
+                        vehicle.setLicensePlate(licensePlate);
+                        vehicle.setStatus(status);
+                        vehicles.add(vehicle);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No vehicles file found or error reading: " + e.getMessage());
+        }
+    }
+    
+    
+ // THIS METHOD WILL HELP US TO LOAD THE CUSTOMERS FROM customers.txt
+    private void loadCustomers() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("customers.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 3) {
+                    int customerId = Integer.parseInt(parts[0]);
+                    String name = parts[1];
+                    String phoneNumber = parts[2];
+                    
+                    Customer customer = new Customer(customerId, name);
+                    customers.add(customer);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No customers file found or error reading: " + e.getMessage());
+        }
+    }
+    
+    
+    
+ // THIS METHOD WILL HELP US TO LOAD THE RENTAL RECORDS FROM rental_records.txt
+    private void loadRentalRecords() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("rental_records.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 5) {
+                    String recordType = parts[0];
+                    String licensePlate = parts[1];
+                    int customerId = Integer.parseInt(parts[2]);
+                    LocalDate recordDate = LocalDate.parse(parts[3]);
+                    double totalAmount = Double.parseDouble(parts[4]);
+                    
+                    // Find the vehicle and the customer
+                    Vehicle vehicle = findVehicleByPlate(licensePlate);
+                    Customer customer = findCustomerById(customerId);
+                    
+                    if (vehicle != null && customer != null) {
+                        RentalRecord record = new RentalRecord(vehicle, customer, recordDate, totalAmount, recordType);
+                        rentalHistory.addRecord(record);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No rental records file found or error reading: " + e.getMessage());
+        }
+    }
 }
