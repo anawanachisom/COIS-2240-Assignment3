@@ -5,7 +5,22 @@ import java.util.List;
 import java.util.Map;
 
 public class RentalSystem {
-    private ArrayList<Vehicle> vehicles = new ArrayList<>();
+	
+	private static RentalSystem instance;
+	
+	 private RentalSystem() {
+	        vehicles = new ArrayList<>();
+	        rentalHistory = new RentalHistory();
+	    }
+	    
+	    public static RentalSystem getInstance() {
+	        if (instance == null) {
+	            instance = new RentalSystem();
+	        }
+	        return instance;
+	    }
+	
+    private ArrayList<Vehicle> vehicles;
     private RentalHistory rentalHistory = new RentalHistory(); // new attribute for Assignment #2
     
     // Original Assignment #1 methods (PLEASE PLEASEEE DON'T FORGET TO COPY CODE FROM FIRST ASSIGNMENT)

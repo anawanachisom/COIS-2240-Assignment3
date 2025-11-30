@@ -3,7 +3,13 @@ import java.util.Scanner;
 public class VehicleRentalApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);    // declaring our scanner object by the name 'sc'
-        RentalSystem system = new RentalSystem();   // declaring our RentalSystem object by the name 'system'
+        RentalSystem system = RentalSystem.getInstance();  // NOTE: THIS IS THE NEW SINGLETON WAY  
+        
+        // Test Singleton
+        RentalSystem system1 = RentalSystem.getInstance();
+        RentalSystem system2 = RentalSystem.getInstance();
+        System.out.println("Same instance? " + (system1 == system2)); // This is supposed to print "true" for me
+        
 
         while (true) {
             System.out.println("\n ***** Vehicle Rental System *****");
