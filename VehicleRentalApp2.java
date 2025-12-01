@@ -6,7 +6,7 @@ public class VehicleRentalApp {
         Scanner scanner = new Scanner(System.in);
         RentalSystem rentalSystem = RentalSystem.getInstance();  // THIS IS MY NEW SINGLETON WAY
         
-        // To Test our Singleton. NOT IMPORTANT TO ME!!
+        // To Test our Singleton
         RentalSystem system1 = RentalSystem.getInstance();
         RentalSystem system2 = RentalSystem.getInstance();
         System.out.println("Same instance? " + (system1 == system2)); // This should give me "true"

@@ -169,10 +169,10 @@ public class RentalSystem {
         return null;
     }
     
- // This saves vehicle to file (called inside addVehicle())
+ // 1. Save vehicle to file (called inside addVehicle())
     private void saveVehicle(Vehicle vehicle) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("vehicles.txt", true))) {
-            // a nice format is: Type,LicensePlate,Make,Model,Year,Status
+            // Format: Type,LicensePlate,Make,Model,Year,Status
             String vehicleType;
             if (vehicle instanceof Car) {
                 vehicleType = "CAR";
@@ -195,10 +195,10 @@ public class RentalSystem {
         }
     }
 
-    // This saves customer to file (called inside addCustomer())
+    // 2. Save customer to file (called inside addCustomer())
     private void saveCustomer(Customer customer) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("customers.txt", true))) {
-            // good formar is: CustomerID,Name,PhoneNumber
+            // Format: CustomerID,Name,PhoneNumber
             writer.println(customer.getCustomerId() + "," + 
                           customer.getCustomerName() );
         } catch (IOException e) {
@@ -206,10 +206,10 @@ public class RentalSystem {
         }
     }
 
-    // This saves rental record to file (called in rentVehicle() and returnVehicle())
+    // 3. Save rental record to file (called in rentVehicle() and returnVehicle())
     private void saveRecord(RentalRecord record) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("rental_records.txt", true))) {
-            // The Format is : RecordType,LicensePlate,CustomerID,Date,Amount
+            // Format: RecordType,LicensePlate,CustomerID,Date,Amount
             writer.println(record.getRecordType() + "," + 
                           record.getVehicle().getLicensePlate() + "," + 
                           record.getCustomer().getCustomerId() + "," + 
