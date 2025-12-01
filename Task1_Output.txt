@@ -1,0 +1,377 @@
+Same instance? true
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+2
+Enter customer ID: 001
+Enter name: George
+Customer added successfully.
+Customer added successfully.
+Customer added successfully.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+2
+Enter customer ID: 002
+Enter name: Anne
+Customer added successfully.
+Customer added successfully.
+Customer added successfully.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+1
+  1: Car
+  2: Minibus
+  3: Pickup Truck
+1
+Enter license plate: aaa111
+Enter make: toyota
+Enter model: corolla
+Enter year: 2019
+Enter number of seats: 4
+Car added successfully.
+Vehicle added successfully.
+Vehicle added successfully.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+1
+  1: Car
+  2: Minibus
+  3: Pickup Truck
+2
+Enter license plate: bbb222
+Enter make: honda
+Enter model: civic
+Enter year: 2021
+Is accessible? (true/false): true
+Minibus added successfully.
+Vehicle added successfully.
+Vehicle added successfully.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+1
+  1: Car
+  2: Minibus
+  3: Pickup Truck
+3
+Enter license plate: ccc333
+Enter make: ford
+Enter model: focus
+Enter year: 2024
+Enter the cargo size: 3
+Has trailer? (true/false): true
+Pickup Truck added successfully.
+Vehicle added successfully.
+Vehicle added successfully.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+3
+
+=== Available Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | 56FGB        | Gtyj         | 111          | 333    | Available          |
+| Car             | 222          | Ddd          | Eee          | 333    | Available          |
+| Car             | RRR554       | 322          | 333          | 222    | Available          |
+| Minibus         | WDD333       | 222          | 777          | 999    | Available          |
+| Car             | ERR444       | Null         | Null         | 222    | Available          |
+| Car             | 888          | Frr          | Ek8          | 3455   | Available          |
+| Car             | AAA111       | Toyota       | Corolla      | 2019   | Available          |
+| Minibus         | BBB222       | Honda        | Civic        | 2021   | Available          |
+| Pickup Truck    | CCC333       | Ford         | Focus        | 2024   | Available          |
+
+Enter license plate: aaa111
+Registered Customers:
+  Customer ID: 233 | Name: du
+  Customer ID: 123 | Name: chi
+  Customer ID: 333 | Name: wdd
+  Customer ID: 333 | Name: chi
+  Customer ID: 566 | Name: yhh
+  Customer ID: 444 | Name: uhh
+  Customer ID: 0 | Name: chi
+  Customer ID: 777 | Name: hhh
+  Customer ID: 0 | Name: rff
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 001
+Enter rental amount: 50
+Vehicle rented to George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+3
+
+=== Available Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | 56FGB        | Gtyj         | 111          | 333    | Available          |
+| Car             | 222          | Ddd          | Eee          | 333    | Available          |
+| Car             | RRR554       | 322          | 333          | 222    | Available          |
+| Minibus         | WDD333       | 222          | 777          | 999    | Available          |
+| Car             | ERR444       | Null         | Null         | 222    | Available          |
+| Car             | 888          | Frr          | Ek8          | 3455   | Available          |
+| Minibus         | BBB222       | Honda        | Civic        | 2021   | Available          |
+| Pickup Truck    | CCC333       | Ford         | Focus        | 2024   | Available          |
+
+Enter license plate: ccc333
+Registered Customers:
+  Customer ID: 233 | Name: du
+  Customer ID: 123 | Name: chi
+  Customer ID: 333 | Name: wdd
+  Customer ID: 333 | Name: chi
+  Customer ID: 566 | Name: yhh
+  Customer ID: 444 | Name: uhh
+  Customer ID: 0 | Name: chi
+  Customer ID: 777 | Name: hhh
+  Customer ID: 0 | Name: rff
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 001
+Enter rental amount: 40
+Vehicle rented to George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+3
+
+=== Available Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | 56FGB        | Gtyj         | 111          | 333    | Available          |
+| Car             | 222          | Ddd          | Eee          | 333    | Available          |
+| Car             | RRR554       | 322          | 333          | 222    | Available          |
+| Minibus         | WDD333       | 222          | 777          | 999    | Available          |
+| Car             | ERR444       | Null         | Null         | 222    | Available          |
+| Car             | 888          | Frr          | Ek8          | 3455   | Available          |
+| Minibus         | BBB222       | Honda        | Civic        | 2021   | Available          |
+
+Enter license plate: bbb222
+Registered Customers:
+  Customer ID: 233 | Name: du
+  Customer ID: 123 | Name: chi
+  Customer ID: 333 | Name: wdd
+  Customer ID: 333 | Name: chi
+  Customer ID: 566 | Name: yhh
+  Customer ID: 444 | Name: uhh
+  Customer ID: 0 | Name: chi
+  Customer ID: 777 | Name: hhh
+  Customer ID: 0 | Name: rff
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 80
+Vehicle rented to Anne
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+3
+
+=== Available Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | 56FGB        | Gtyj         | 111          | 333    | Available          |
+| Car             | 222          | Ddd          | Eee          | 333    | Available          |
+| Car             | RRR554       | 322          | 333          | 222    | Available          |
+| Minibus         | WDD333       | 222          | 777          | 999    | Available          |
+| Car             | ERR444       | Null         | Null         | 222    | Available          |
+| Car             | 888          | Frr          | Ek8          | 3455   | Available          |
+
+Enter license plate: ccc333
+Registered Customers:
+  Customer ID: 233 | Name: du
+  Customer ID: 123 | Name: chi
+  Customer ID: 333 | Name: wdd
+  Customer ID: 333 | Name: chi
+  Customer ID: 566 | Name: yhh
+  Customer ID: 444 | Name: uhh
+  Customer ID: 0 | Name: chi
+  Customer ID: 777 | Name: hhh
+  Customer ID: 0 | Name: rff
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 10
+Vehicle is not available for renting.
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+4
+
+=== Rented Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | AAA111       | Toyota       | Corolla      | 2019   | Rented             |
+| Minibus         | BBB222       | Honda        | Civic        | 2021   | Rented             |
+| Pickup Truck    | CCC333       | Ford         | Focus        | 2024   | Rented             |
+
+Enter license plate: ccc333
+Registered Customers:
+  Customer ID: 233 | Name: du
+  Customer ID: 123 | Name: chi
+  Customer ID: 333 | Name: wdd
+  Customer ID: 333 | Name: chi
+  Customer ID: 566 | Name: yhh
+  Customer ID: 444 | Name: uhh
+  Customer ID: 0 | Name: chi
+  Customer ID: 777 | Name: hhh
+  Customer ID: 0 | Name: rff
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 001
+Enter any additional return fees: 10
+Vehicle returned by George
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+3
+
+=== Available Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | 56FGB        | Gtyj         | 111          | 333    | Available          |
+| Car             | 222          | Ddd          | Eee          | 333    | Available          |
+| Car             | RRR554       | 322          | 333          | 222    | Available          |
+| Minibus         | WDD333       | 222          | 777          | 999    | Available          |
+| Car             | ERR444       | Null         | Null         | 222    | Available          |
+| Car             | 888          | Frr          | Ek8          | 3455   | Available          |
+| Pickup Truck    | CCC333       | Ford         | Focus        | 2024   | Available          |
+
+Enter license plate: ccc333
+Registered Customers:
+  Customer ID: 233 | Name: du
+  Customer ID: 123 | Name: chi
+  Customer ID: 333 | Name: wdd
+  Customer ID: 333 | Name: chi
+  Customer ID: 566 | Name: yhh
+  Customer ID: 444 | Name: uhh
+  Customer ID: 0 | Name: chi
+  Customer ID: 777 | Name: hhh
+  Customer ID: 0 | Name: rff
+  Customer ID: 1 | Name: George
+  Customer ID: 2 | Name: Anne
+Enter customer ID: 002
+Enter rental amount: 80
+Vehicle rented to Anne
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+5
+
+=== Available Vehicles ===
+| Type            | Plate        | Make         | Model        | Year   | Status             |
+|--------------------------------------------------------------------------------------------|
+| Car             | 56FGB        | Gtyj         | 111          | 333    | Available          |
+| Car             | 222          | Ddd          | Eee          | 333    | Available          |
+| Car             | RRR554       | 322          | 333          | 222    | Available          |
+| Minibus         | WDD333       | 222          | 777          | 999    | Available          |
+| Car             | ERR444       | Null         | Null         | 222    | Available          |
+| Car             | 888          | Frr          | Ek8          | 3455   | Available          |
+
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+6
+| Type      | Plate        | Customer             | Date         | Amount       |
+|-------------------------------------------------------------------------------|
+| RENT      | 222          | du                   | 2025-11-30   | $345.00      |
+| RENT      | 56FGB        | wdd                  | 2025-11-30   | $55.00       |
+| RENT      | 222          | hhh                  | 2025-11-30   | $99.00       |
+| RENT      | 222          | wdd                  | 2025-11-30   | $22.00       |
+| RENT      | AAA111       | George               | 2025-11-30   | $50.00       |
+| RENT      | CCC333       | George               | 2025-11-30   | $40.00       |
+| RENT      | BBB222       | Anne                 | 2025-11-30   | $80.00       |
+| RETURN    | CCC333       | George               | 2025-11-30   | $10.00       |
+| RENT      | CCC333       | Anne                 | 2025-11-30   | $80.00       |
+
+
+1: Add Vehicle
+2: Add Customer
+3: Rent Vehicle
+4: Return Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+0: Exit
+
+0

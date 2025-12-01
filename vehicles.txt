@@ -2,3 +2,8 @@ CAR,56FGB,Gtyj,111,333,Available
 CAR,222,Ddd,Eee,333,Available
 CAR,RRR554,322,333,222,Available
 MINIBUS,WDD333,222,777,999,Available
+CAR,ERR444,null,null,222,Available
+CAR,888,Frr,Ek8,3455,Available
+CAR,AAA111,Toyota,Corolla,2019,Available
+MINIBUS,BBB222,Honda,Civic,2021,Available
+PICKUPTRUCK,CCC333,Ford,Focus,2024,Available
